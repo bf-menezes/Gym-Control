@@ -4,6 +4,11 @@ const data = require('./data.json')
 const {age, date} = require('./utils')
 const Intl = require('intl')
 
+//index
+exports.index = function(req, res ){
+    return res.render('instructors/index', {instructors: data.instructors})
+}
+
 // show
 exports.show = function(req, res){
     // req.query.id = ?id=1 (pela url)
@@ -107,7 +112,8 @@ exports.edit = function(req, res) {
     
     const instructor = {
         ...foundInstructor,
-        birth: date(foundInstructor.birth)
+        birth: date(foundInstructor.birth),
+        id: Number(foundInstructor.id),
     }
     
     return res.render('instructors/edit', { instructor })
